@@ -1,0 +1,37 @@
+  type Query {
+    getAllProducts (filter: ProductFilter): [Product]
+  }
+  type Product {
+    id: String
+    product: String
+    price: Float
+    images: Image
+  }
+  type Image {
+    id: String
+    description: String
+    url: String
+  }
+  type Mutation {
+    createProduct(input: ProductInput): Product
+    deleteProduct(id: String!): Boolean
+    updateProduct(id: String!, input:ProductUpdateInput): Product
+    createImageOnProduct(productId: String!, input: ImageInput): Image
+    deleteImageOnProduct(productId: String!, id:String!): Boolean
+  }
+  input ProductFilter {
+    categoryId: String
+  }
+  input ProductInput {
+    product: String!
+    price: Float!
+  }
+  input ProductUpdateInput {
+    product: String
+    price: Float
+    categories: [String]
+  }
+  input ImageInput {
+    description: String
+    url: String!
+  }
